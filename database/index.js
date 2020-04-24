@@ -19,6 +19,18 @@ let repoSchema = mongoose.Schema({
 
 let Repo = mongoose.model('Repo', repoSchema);
 
+let retrieve = (callback) => {
+
+  Repo.find().sort([['forks', 'descending']]).exec(function (err, repos) {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, repos.slice(0,25));
+    }
+  });
+}
+
+
 let save = (repos, callback) => {
   for (repo of repos){
     let repoJSON = {
@@ -40,3 +52,4 @@ let save = (repos, callback) => {
 }
 
 module.exports.save = save;
+module.exports.retrieve = retrieve;

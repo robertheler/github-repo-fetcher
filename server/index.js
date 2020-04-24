@@ -14,6 +14,13 @@ app.use(express.static(__dirname + '/../client/dist'));
 
 app.get('/repos' ,function (req,res) {
   console.log('From SERVER: GET/repos received');
+  db.retrieve((err, repos) => {
+    if (err) {
+      res.status(400).end();
+    } else {
+      res.status(200).send(repos);
+    }
+  })
 });
 
 app.post('/repos', function (req, res) {
@@ -28,9 +35,9 @@ app.post('/repos', function (req, res) {
       res.status(500).end();
     } else {
       db.save(data, () => {
-        //res.redirect('/');
+        res.redirect('/repos');
       });
-      res.send(data);
+      //res.send(data);
 
       //res.send(data);
     }
