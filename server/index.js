@@ -18,10 +18,23 @@ app.post('/repos', function (req, res) {
   // save the repo information in the database
   console.log(`From SERVER: POST/${req.body.username} received by the server`);
 
-  let repos = github.getReposByUsername(req.body.username);
-
-  res.send(repos);
+  github.getReposByUsername(req.body.username, (error, data) => {
+    if (error) {
+      updateDatabase(error, null)
+      res.status(500).end();
+    } else {
+      updateDatabase(null, data);
+      res.send(data);
+      //res.send(data);
+    }
+  })
 });
+
+let updateDatabase = (error, data) => {
+  if (!error) {
+    console.log('About to update the database', data);
+  }
+}
 
 app.get('/repos', function (req, res) {
   // TODO - your code here!
