@@ -12,7 +12,22 @@ class App extends React.Component {
     }
 
   }
+  componentDidMount() {
+    this.retrieve();
+  }
 
+  retrieve() {
+    $.ajax({
+      type: "GET",
+      url: 'http://127.0.0.1:1128/repos',
+      success: (topRepos) => {
+        console.log(`From CLIENT: GET/repos was successful`);
+        this.setState({repos: JSON.parse(topRepos)})
+      },
+      error: (err) => console.log(`From CLIENT: GET/repos was unsuccessful:`, err),
+      dataType: 'text'
+    });
+  }
   search (term) {
     //console.log(`${term} was searched`);
     //send ajax to server

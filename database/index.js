@@ -25,28 +25,30 @@ let retrieve = (callback) => {
     if (err) {
       callback(err, null);
     } else {
-      callback(null, repos.slice(0,25));
+      callback(null, repos);
     }
   });
 }
 
 
 let save = (repos, callback) => {
-  for (repo of repos){
-    let repoJSON = {
-      id: repo.id,
-      name: repo.name,
-      html_url: repo.html_url,
-      description: repo.description,
-      owner_id: repo.owner.id,
-      owner_login: repo.owner.login,
-      stargazers_count: repo.stargazers_count,
-      watchers_count: repo.watchers_count,
-      forks: repo.forks
-    }
+  if(repos.length) {
+    for (repo of repos){
+      let repoJSON = {
+        id: repo.id,
+        name: repo.name,
+        html_url: repo.html_url,
+        description: repo.description,
+        owner_id: repo.owner.id,
+        owner_login: repo.owner.login,
+        stargazers_count: repo.stargazers_count,
+        watchers_count: repo.watchers_count,
+        forks: repo.forks
+      }
 
-    let newRepo = new Repo(repoJSON);
-    newRepo.save();
+      let newRepo = new Repo(repoJSON);
+      newRepo.save();
+    }
   }
   callback();
 }
