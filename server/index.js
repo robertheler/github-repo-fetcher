@@ -1,3 +1,4 @@
+const github = require ('../helpers/github.js');
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -17,7 +18,9 @@ app.post('/repos', function (req, res) {
   // save the repo information in the database
   console.log(`From SERVER: POST/${req.body.username} received by the server`);
 
-  res.end();
+  let repos = github.getReposByUsername(req.body.username);
+
+  res.send(repos);
 });
 
 app.get('/repos', function (req, res) {
