@@ -8,7 +8,7 @@ const RepoList = (props) => {
     <h4> Repo List Component </h4>
     There are {props.repos.length} repos. Here are the top 25 ranked by forks:
     <br></br>
-    <table>
+    <table className="paleBlueRows">
       <tr>
         <th>Name</th>
         <th>Owner</th>

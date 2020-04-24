@@ -37,7 +37,10 @@ class App extends React.Component {
       data: {username:
         term
       },
-      success: (response) => console.log(`From CLIENT: POST/${term} was successful`),
+      success: (topRepos) => {
+        console.log(`From CLIENT: POST/${term} was successful`)
+        this.setState({repos: JSON.parse(topRepos)})
+      },
       error: (err) => console.log(`From CLIENT: POST/${term} was unsuccessful:`, err),
       dataType: 'text'
     });
@@ -46,8 +49,8 @@ class App extends React.Component {
   render () {
     return (<div>
       <h1>Github Fetcher</h1>
-      <RepoList repos={this.state.repos}/>
       <Search onSearch={this.search.bind(this)}/>
+      <RepoList repos={this.state.repos}/>
     </div>)
   }
 }
