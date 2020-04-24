@@ -8,7 +8,15 @@ const RepoList = (props) => {
     <h4> Repo List Component </h4>
     There are {props.repos.length} repos. Here are the top 25 ranked by forks:
     <br></br>
-    <div>{top25.map(item => <Repo repo={item} />)}</div>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Owner</th>
+        <th>URL</th>
+        <th>Forks</th>
+      </tr>
+      {top25.map(item => <Repo repo={item} />)}
+    </table>
   </div>
 }
 
