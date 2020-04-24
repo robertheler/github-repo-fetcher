@@ -22,7 +22,7 @@ class App extends React.Component {
       data: {username:
         term
       },
-      success: (response) => console.log(`From CLIENT: POST/${term} was successful`, response),
+      success: (response) => console.log(`From CLIENT: POST/${term} was successful`),
       error: (err) => console.log(`From CLIENT: POST/${term} was unsuccessful:`, err),
       dataType: 'text'
     });

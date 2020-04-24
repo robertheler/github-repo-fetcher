@@ -1,4 +1,5 @@
 const github = require ('../helpers/github.js');
+const db = require('../database/index.js');
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -20,21 +21,16 @@ app.post('/repos', function (req, res) {
 
   github.getReposByUsername(req.body.username, (error, data) => {
     if (error) {
-      updateDatabase(error, null)
       res.status(500).end();
     } else {
-      updateDatabase(null, data);
+      db.save(data);
       res.send(data);
+
       //res.send(data);
     }
   })
 });
 
-let updateDatabase = (error, data) => {
-  if (!error) {
-    console.log('About to update the database', data);
-  }
-}
 
 app.get('/repos', function (req, res) {
   // TODO - your code here!
