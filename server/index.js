@@ -12,6 +12,10 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(express.static(__dirname + '/../client/dist'));
 
+app.get('/repos' ,function (req,res) {
+  console.log('From SERVER: GET/repos received');
+});
+
 app.post('/repos', function (req, res) {
   // TODO - your code here!
   // This route should take the github username provided
@@ -23,7 +27,9 @@ app.post('/repos', function (req, res) {
     if (error) {
       res.status(500).end();
     } else {
-      db.save(data);
+      db.save(data, () => {
+        //res.redirect('/');
+      });
       res.send(data);
 
       //res.send(data);

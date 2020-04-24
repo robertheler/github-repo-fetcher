@@ -3,16 +3,40 @@ mongoose.connect('mongodb://localhost/fetcher');
 
 let repoSchema = mongoose.Schema({
   // TODO: your schema here!
+  id: {
+    type: Number,
+    unique: true
+  },
+  name: String,
+  html_url: String,
+  dscription: String,
+  owner_id: Number,
+  owner_login: String,
+  stargazers_count: Number,
+  watchers_count: Number,
+  forks: Number
 });
 
 let Repo = mongoose.model('Repo', repoSchema);
 
-let save = (repos) => {
-  console.log('About to save repos', repos[0]);
+let save = (repos, callback) => {
+  for (repo of repos){
+    let repoJSON = {
+      id: repo.id,
+      name: repo.name,
+      html_url: repo.html_url,
+      description: repo.description,
+      owner_id: repo.owner.id,
+      owner_login: repo.owner.login,
+      stargazers_count: repo.stargazers_count,
+      watchers_count: repo.watchers_count,
+      forks: repo.forks
+    }
 
-  // TODO: Your code here
-  // This function should save a repo or repos to
-  // the MongoDB
+    let newRepo = new Repo(repoJSON);
+    newRepo.save();
+  }
+  callback();
 }
 
 module.exports.save = save;
