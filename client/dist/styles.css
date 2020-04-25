@@ -1,42 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
 table.paleBlueRows {
   font-family: "Times New Roman", Times, serif;
-  border: 1px solid #FFFFFF;
+  width: 800px;
   height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
   text-align: left;
+  font-family: 'Lato', sans-serif;
   border-collapse: collapse;
+  box-shadow:   20px 20px 47px #408bb6,
+                -20px -20px 47px #6ae7ff;
 }
 table.paleBlueRows td, table.paleBlueRows th {
-  border: 1px solid #FFFFFF;
   padding: 3px 2px;
 }
-table.paleBlueRows tbody td {
-  font-size: 13px;
-}
-table.paleBlueRows tr:nth-child(even) {
-  background: #F5E1A5;
-}
-table.paleBlueRows thead {
-  background: #FFD11F;
-  border-bottom: 5px solid #FFFFFF;
-}
-table.paleBlueRows thead th {
-  font-size: 17px;
-  font-weight: bold;
-  color: #FFFFFF;
-  text-align: center;
-  border-left: 2px solid #FFFFFF;
-}
-table.paleBlueRows thead th:first-child {
-  border-left: none;
+
+
+
+table.paleBlueRows tr {
+  box-shadow: inset 20px 20px 47px #50aee4,
+              inset -20px -20px 47px #5ac4ff;
 }
 
-table.paleBlueRows tfoot {
-  font-size: 14px;
+table.paleBlueRows thead th {
   font-weight: bold;
-  color: #333333;
-  background: #F3F5BC;
-  border-top: 3px solid #444444;
 }
-table.paleBlueRows tfoot td {
-  font-size: 14px;
+
+a {
+  color: rgb(54, 54, 54);
+}
+
+
+a:hover {
+  color:whitesmoke;
+}
+
+
+body {
+  margin-top: 80px;
+  background: #55b9f3;
+  height: 1000px;
+  color: rgb(54, 54, 54);
+  text-align: center;
+  font-size: 16px;
+  font-family: 'Lato', sans-serif;
+}
+
+.search {
+  margin-bottom: 15px;
+}
+
+button {
+  background: #55b9f3;
+  font-size: 16px;
+  color: rgb(54, 54, 54);
+  border: none;
+  height: 33px;
+  width: 100px;
+  font-family: 'Lato', sans-serif;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-left: 20px;
+  border-radius:30px;
+  box-shadow:  20px 20px 47px #408bb6,
+  -10px -10px 27px #6ae7ff;
+
+}
+
+input {
+  height: 30px;
+  border-radius: 30px;
+  background: whitesmoke;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-size: 16px;
+  color: rgb(54, 54, 54);
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 10px;
+  border: none;
+  font-family: 'Lato', sans-serif;
+}
+button:hover {
+
+  color:whitesmoke;
+}
+
+
+button:active {
+  box-shadow:  10px 10px 20px #408bb6,
+  -10px -10px 20px #6ae7ff;
+  color:whitesmoke;
 }
