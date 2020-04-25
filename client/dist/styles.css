@@ -2,7 +2,7 @@
 
 table.paleBlueRows {
   font-family: "Times New Roman", Times, serif;
-  width: 800px;
+  width: auto;
   height: 200px;
   margin-left: auto;
   margin-right: auto;
@@ -14,12 +14,13 @@ table.paleBlueRows {
                 -20px -20px 47px #6ae7ff;
 }
 table.paleBlueRows td, table.paleBlueRows th {
-  padding: 3px 2px;
+  padding: 5px 10px;
 }
 
 
 
 table.paleBlueRows tr {
+  height: 30px;
   box-shadow: inset 20px 20px 47px #50aee4,
               inset -20px -20px 47px #5ac4ff;
 }

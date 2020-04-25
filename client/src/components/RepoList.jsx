@@ -5,6 +5,7 @@ const repos = ['a', 'b', 'c'];
 const RepoList = (props) => {
   let top25 = props.repos.slice(0, 25);
   return <div>
+    <b id='message'></b>
     Currently, there are {props.repos.length} repos in the database. Here are the top 25 ranked by forks:
     <br></br>
     <table className="paleBlueRows">

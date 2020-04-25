@@ -8,7 +8,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      repos: []
+      repos: [],
+      new : 0
     }
 
   }
@@ -37,9 +38,12 @@ class App extends React.Component {
       data: {username:
         term
       },
-      success: (topRepos) => {
+      success: (repos) => {
         console.log(`From CLIENT: POST/${term} was successful`)
-        this.setState({repos: JSON.parse(topRepos)})
+        let all = JSON.parse(repos);
+        let totalAdded = all.pop();
+        this.setState({repos: all, new: totalAdded});
+        document.getElementById('message').innerHTML = `${totalAdded} repos added! `;
       },
       error: (err) => console.log(`From CLIENT: POST/${term} was unsuccessful:`, err),
       dataType: 'text'

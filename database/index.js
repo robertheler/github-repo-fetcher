@@ -32,8 +32,14 @@ let retrieve = (callback) => {
 
 
 let save = (repos, callback) => {
-  if(repos.length) {
-    for (repo of repos){
+  //let initialLength = 0;
+
+  console.log(repos.length);
+  let promises = []
+
+  for (var i = 0; i < repos.length; i++) {
+    let repo = repos[i];
+    promises.push(new Promise((resolve, reject) => {
       let repoJSON = {
         id: repo.id,
         name: repo.name,
@@ -47,10 +53,30 @@ let save = (repos, callback) => {
       }
 
       let newRepo = new Repo(repoJSON);
-      newRepo.save();
-    }
+      newRepo.save((err) => {
+        if (err) {
+          console.log(err);
+          resolve(0); //not added
+        } else {
+          //console.log('added');
+          resolve(1); //added
+        }
+      });
+    }));
   }
-  callback();
+
+  Promise.all(promises)
+  .then(array => {
+    console.log(array);
+    let reposAdded = 0;
+    array.forEach(item => reposAdded += item);
+    console.log(reposAdded);
+    callback(reposAdded);
+  })
+  .catch(err =>
+    callback(0));
+
+  //callback(eventualLength - initialLength);
 }
 
 module.exports.save = save;

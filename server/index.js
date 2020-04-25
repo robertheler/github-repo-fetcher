@@ -34,8 +34,17 @@ app.post('/repos', function (req, res) {
     if (error) {
       res.status(500).end();
     } else {
-      db.save(data, () => {
-        res.redirect('/repos');
+      db.save(data, (added) => {
+        console.log('added', added);
+        db.retrieve((err, repos) => {
+          if (err) {
+            res.status(400).end();
+          } else {
+            repos.push(added); // how many new repos
+            res.status(200).send(repos);
+          }
+        })
+
       });
       //res.send(data);
 
