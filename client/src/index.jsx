@@ -22,7 +22,6 @@ class App extends React.Component {
       type: "GET",
       url: 'http://127.0.0.1:1128/repos',
       success: (topRepos) => {
-        console.log(`From CLIENT: GET/repos was successful`);
         this.setState({repos: JSON.parse(topRepos)})
       },
       error: (err) => console.log(`From CLIENT: GET/repos was unsuccessful:`, err),

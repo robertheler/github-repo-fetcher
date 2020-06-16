@@ -35,7 +35,6 @@ app.post('/repos', function (req, res) {
       res.status(500).end();
     } else {
       db.save(data, (added) => {
-        console.log('added', added);
         db.retrieve((err, repos) => {
           if (err) {
             res.status(400).end();
@@ -46,18 +45,10 @@ app.post('/repos', function (req, res) {
         })
 
       });
-      //res.send(data);
-
-      //res.send(data);
     }
   })
 });
 
-
-app.get('/repos', function (req, res) {
-  // TODO - your code here!
-  // This route should send back the top 25 repos
-});
 
 let port = 1128;
 

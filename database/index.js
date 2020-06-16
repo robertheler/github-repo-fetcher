@@ -33,8 +33,6 @@ let retrieve = (callback) => {
 
 let save = (repos, callback) => {
   //let initialLength = 0;
-
-  console.log(repos.length);
   let promises = []
 
   for (var i = 0; i < repos.length; i++) {
@@ -55,7 +53,6 @@ let save = (repos, callback) => {
       let newRepo = new Repo(repoJSON);
       newRepo.save((err) => {
         if (err) {
-          console.log(err);
           resolve(0); //not added
         } else {
           //console.log('added');
@@ -67,10 +64,8 @@ let save = (repos, callback) => {
 
   Promise.all(promises)
   .then(array => {
-    console.log(array);
     let reposAdded = 0;
     array.forEach(item => reposAdded += item);
-    console.log(reposAdded);
     callback(reposAdded);
   })
   .catch(err =>
